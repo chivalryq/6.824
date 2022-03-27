@@ -32,8 +32,10 @@ func main() {
 // from a plugin file, e.g. ../mrapps/wc.so
 //
 func loadPlugin(filename string) (func(string, string) []mr.KeyValue, func(string, []string) string) {
+	fmt.Println(filename)
 	p, err := plugin.Open(filename)
 	if err != nil {
+		fmt.Printf("err: %v\n", err)
 		log.Fatalf("cannot load plugin %v", filename)
 	}
 	xmapf, err := p.Lookup("Map")
